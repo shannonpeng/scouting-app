@@ -26,7 +26,6 @@ app.controller('MainController', ['$scope', function($scope) {
 	},
 
 	$scope.organizeMatches = function(array, callback) {
-		console.log(array);
 		var matchData = [];
 		array.sort(function(a, b) {
 		    return parseInt(a.attributes.matchNumber) - parseInt(b.attributes.matchNumber);
