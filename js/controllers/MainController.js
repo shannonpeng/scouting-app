@@ -35,13 +35,11 @@ app.controller('MainController', ['$scope', function($scope) {
 		query.equalTo("name", $scope.competition);
 		query.find().then(function(results) {
 			comp = results[0];
-			console.log(comp);
 			var t = comp.relation("team");
 			q = t.query();
 			q.find({
 				success: function(results) {
 					$scope.$apply(function() {
-						console.log(results)
 						$scope.teams = results;
 					});
 				},
