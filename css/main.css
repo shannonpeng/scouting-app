@@ -134,4 +134,9 @@ header .search-icon {
 		font-size: 1.5em;
 	}
 
+	.matchContainer .content {
+		width: 100%;
+		overflow: scroll;
+	}
+
 }
