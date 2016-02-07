@@ -22,19 +22,10 @@ app.controller('MainController', ['$scope', function($scope) {
 	$scope.fetchTeams = function() {
 		var c = Parse.Object.extend("Competition");
 		var query = new Parse.Query(c);
-		var comp;
-		query.find({
-			success: function(results) {
-				$scope.$apply(function() {
-					comp = results[0];
-					console.log(comp);
-				});
-			},
-			error: function(error) {
-				console.log(error);
-			}
-		});
-		var t = new Parse.Relation(comp, "team");
+		var comp = query.find().result;
+		console.log(comp);
+		var t = comp.relation("team");
+		console.log(t);
 		q = t.query();
 		q.find({
 			success: function(results) {
