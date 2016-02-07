@@ -17,7 +17,6 @@ html, body {
 	margin: 0;
 	font-family: 'Open Sans', sans-serif;
 	color: #303030;
-	font-size: 1.25em;
 }
 
 ul {
@@ -30,6 +29,7 @@ header {
 	color: white;
 	padding: 50px;
 	text-align: center;
+	font-size: 1.25em;
 }
 
 header > h3 {
@@ -91,6 +91,41 @@ header .search-icon {
 #searchform input:focus {
 	outline: none;
 	opacity: 1;
+}
+
+.matchContainer {
+	padding: 25px;
+}
+
+.matchContainer  h1 {
+	text-align: center;
+}
+
+.cueText {
+	opacity: 0.2;
+}
+
+.matchContainer .content {
+	text-align: center;
+	font-size: 0.85em;
+	margin: auto;
+}
+
+.matchContainer table {
+	margin: auto;
+}
+
+.matchContainer table .header td {
+	font-weight: bold;
+	border-bottom: 5px solid #303030;
+}
+
+.matchContainer table td {
+	padding: 5px;
+}
+
+.matchContainer table tr:nth-child(even) {
+	background: #C9E7FE;
 }
 
 @media screen and (max-width: 1200px) {

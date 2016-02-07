@@ -26,17 +26,55 @@
 			</li>
 			<li>
 				<p>Teams</p>
+				<p class="cueText">Select a competition</p>
 				<ul id="teams">
-					<li ng-repeat="team in teams">{{ team.attributes.name }}</li>
+					<li ng-repeat="team in teams">{{ team.attributes.name }} ({{ team.attributes.number }})</li>
 				</ul>
 			</li>
 			<li>
-				<p>Match</p>
-				<input id="matchNumber" placeholder="1">{{ matchNumber }}</input>
+				<p>Filter By Match</p>
+				<input id="matchNumber" placeholder="{{ match }}"></input>
 			</li>
 		</ul>
 		
 	</header>
+
+	<div class="matchContainer" ng-repeat="match in matchData">
+
+		<h1>Match {{ match.attributes.matchNumber }}</h1>
+		<div class="content">
+			<table>
+				<tr class="header">
+						<td>Team Number</td>
+						<td>Alliance Color</td>
+						<td>Auto Climber in Shelter</td>
+						<td>Auto Beacon</td>
+						<td>Auto Parking</td>
+						<td>Teleop Climber in Shelter</td>
+						<td>Teleop Parking</td>
+						<td>Teleop Climber Zipline</td>
+						<td>Teleop Floor Goal</td>
+						<td>Teleop Mid Goal</td>
+						<td>Teleop High Goal</td>
+						<td>Teleop All Clear</td>
+					</tr>
+					<tr ng-repeat="row in matchData">
+						<td>{{ row.attributes.teamNumber }}</td>
+						<td>{{ row.attributes.allianceColor }}</td>
+						<td>{{ row.attributes.autoClimberInShelter }}</td>
+						<td>{{ row.attributes.autoBeacon }}</td>
+						<td>{{ row.attributes.autoParking }}</td>
+						<td>{{ row.attributes.teleopClimberInShelter }}</td>
+						<td>{{ row.attributes.teleopParking }}</td>
+						<td>{{ row.attributes.teleopClimberZipline }}</td>
+						<td>{{ row.attributes.teleopFloorGoal }}</td>
+						<td>{{ row.attributes.teleopMidGoal }}</td>
+						<td>{{ row.attributes.teleopHighGoal }}</td>
+						<td>{{ row.attributes.teleopAllClear }}</td>
+					</tr>
+			</table>
+		</div>
+	</div>
 
 	<!-- Angular -->
     <script src="js/app.js"></script>
