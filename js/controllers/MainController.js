@@ -6,6 +6,14 @@ app.controller('MainController', ['$scope', function($scope) {
 	$scope.competition = "";
 	$scope.team = "";
 
+	$scope.setQueryCompetition = function(s) {
+		$scope.competition = s;
+	},
+
+	$scope.setQueryTeam = function(s) {
+		$scope.team = s;
+	},
+
 	$scope.fetchCompetitions = function() {
 		var Competition = Parse.Object.extend("Competition");
 		var query = new Parse.Query(Competition);
@@ -18,26 +26,29 @@ app.controller('MainController', ['$scope', function($scope) {
 			error: function(error) {
 			}
 		});
-	}
+	},
+
 	$scope.fetchTeams = function() {
-		var c = Parse.Object.extend("Competition");
-		var query = new Parse.Query(c);
-		var comp = query.find().result;
-		console.log(comp);
-		var t = comp.relation("team");
-		console.log(t);
-		q = t.query();
-		q.find({
-			success: function(results) {
-				$scope.$apply(function() {
-					console.log(results)
-					$scope.teams = results;
-				});
-			},
-			error: function(error) {
-				console.log(error);
-				return;
-			}
+		var Competition = Parse.Object.extend("Competition");
+		var query = new Parse.Query(Competition);
+		console.log($scope.competition);
+		query.equalTo("name", $scope.competition);
+		query.find().then(function(results) {
+			comp = results;
+			console.log(comp);
+			var t = comp.relation("team");
+			q = t.query();
+			q.find({
+				success: function(results) {
+					$scope.$apply(function() {
+						console.log(results)
+						$scope.teams = results;
+					});
+				},
+				error: function(error) {
+					console.log(error);
+				}
+			});
 		});
 	}
 }]);
