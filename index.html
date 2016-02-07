@@ -25,11 +25,13 @@
 				</ul>
 			</li>
 			<li>
-				<p>Team Number</p>
-				<input id="teamNumber" placeholder="8405"></input>
+				<p>Teams</p>
+				<ul id="teams">
+					<li ng-repeat="team in teams">{{ team.attributes.name }}</li>
+				</ul>
 			</li>
 			<li>
-				<p>Match Number</p>
+				<p>Match</p>
 				<input id="matchNumber" placeholder="1"></input>
 			</li>
 		</ul>

@@ -4,9 +4,18 @@ var app = angular.module('app', []);
 
 $(window).load(function() {
 	angular.element($(".main")).scope().fetchCompetitions();
+	angular.element($(".main")).scope().fetchTeams();
 });
 
 $(document).on('click', '#competitions li', function(event) {
 	$("#competitions li").removeClass("selected");
 	$(event.target).addClass("selected");
+	angular.element($(".main")).scope().competition = ($(event.target).text().substring(0, $(event.target).text().length));
+	angular.element($(".main")).scope().fetchTeams();
+});
+
+$(document).on('click', '#teams li', function(event) {
+	$("#teams li").removeClass("selected");
+	$(event.target).addClass("selected");
+	angular.element($(".main")).scope().team = ($(event.target).text().substring(0, $(event.target).text().length));
 });
