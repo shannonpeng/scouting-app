@@ -2,7 +2,7 @@ app.controller('MainController', ['$scope', function($scope) {
 	
 	$scope.competitions = [];
 	$scope.teams = [];
-	$scope.matchData = [];
+	$scope.matches = [];
 
 	$scope.competition;
 	$scope.team;
@@ -25,17 +25,27 @@ app.controller('MainController', ['$scope', function($scope) {
 		$scope.match = s;
 	},
 
-	$scope.checkDuplicateMatches = function(array) {
-		if (array.length == 1)
-			return array;
+	$scope.organizeMatches = function(array, callback) {
+		console.log(array);
+		var matchData = [];
 		array.sort(function(a, b) {
 		    return parseInt(a.attributes.matchNumber) - parseInt(b.attributes.matchNumber);
 		});
-		for(var i = array.length - 2; i >= 0; i--) {
-			if (parseInt(array[i].attributes.matchNumber) == parseInt(array[i + 1].attributes.matchNumber))
-				array.splice(i, 1);
+		var currentMN = -1;
+		var currentIndex = -1;
+		for (var i = 0; i < array.length; i++) {
+			if (parseInt(array[i].attributes.matchNumber) == currentMN)
+				matchData[currentIndex].push(array[i]);
+			else {
+				currentMN = array[i].attributes.matchNumber;
+				currentIndex++;
+				matchData[currentIndex] = new Array();
+				matchData[currentIndex].push(array[i]);
+			}
 		}
-		return array;
+		$scope.matchData = matchData;
+		console.log(matchData);
+		callback();
 	}
 
 	$scope.fetchCompetitions = function() {
@@ -86,10 +96,7 @@ app.controller('MainController', ['$scope', function($scope) {
 		}
 		console.log(query);
 		query.find().then(function(results) {
-			$scope.$apply(function() {
-				$scope.matchData = $scope.checkDuplicateMatches(results);
-			});
+			$scope.organizeMatches(results, function() {$scope.$apply()});
 		});
-		console.log($scope.matchData);
 	}
 }]);
