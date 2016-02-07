@@ -25,14 +25,14 @@ $(document).on('click', '#teams li', function(event) {
 		angular.element($(".main")).scope().setQueryTeam($(event.target).text().substring(0, $(event.target).text().indexOf(' (')));
 		var tn = $(event.target).text().substring($(event.target).text().indexOf('(') + 1, $(event.target).text().length - 1);
 		angular.element($(".main")).scope().setQueryTeamNumber(tn);
-		angular.element($(".main")).scope().setQueryMatch(null);
 	}
 	else {
 		$("#teams li").removeClass("selected");
 		angular.element($(".main")).scope().setQueryTeam(null);
 		angular.element($(".main")).scope().setQueryTeamNumber(null);
-		angular.element($(".main")).scope().setQueryMatch(null);
+
 	}
+	angular.element($(".main")).scope().setQueryMatch(null);
 	angular.element($(".main")).scope().fetchMatches();
 });
 

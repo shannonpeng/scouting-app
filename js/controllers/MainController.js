@@ -44,7 +44,6 @@ app.controller('MainController', ['$scope', function($scope) {
 			}
 		}
 		$scope.matchData = matchData;
-		console.log(matchData);
 		callback();
 	}
 
@@ -65,7 +64,6 @@ app.controller('MainController', ['$scope', function($scope) {
 	$scope.fetchTeams = function() {
 		var Competition = Parse.Object.extend("Competition");
 		var query = new Parse.Query(Competition);
-		console.log($scope.competition);
 		query.equalTo("name", $scope.competition);
 		query.find().then(function(results) {
 			comp = results[0];
