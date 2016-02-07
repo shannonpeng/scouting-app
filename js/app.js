@@ -4,7 +4,6 @@ var app = angular.module('app', []);
 
 $(window).load(function() {
 	angular.element($(".main")).scope().fetchCompetitions();
-	angular.element($(".main")).scope().fetchTeams();
 });
 
 $(document).on('click', '#competitions li', function(event) {
