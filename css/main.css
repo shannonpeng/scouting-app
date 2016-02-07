@@ -77,17 +77,18 @@ header .search-icon {
 	opacity: 1;
 }
 
-input {
-	max-width: 150px;
+#searchform input {
+	max-width: 100px;
 	padding: 15px;
 	margin: 10px;
 	border-radius: 5px;
 	border: none;
 	font-size: 0.75em;
 	opacity: 0.9;
+	text-align: center;
 }
 
-input:focus {
+#searchform input:focus {
 	outline: none;
 	opacity: 1;
 }

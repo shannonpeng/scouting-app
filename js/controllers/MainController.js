@@ -20,10 +20,23 @@ app.controller('MainController', ['$scope', function($scope) {
 		});
 	}
 	$scope.fetchTeams = function() {
-		var Team = Parse.Object.extend("Team");
-		var query = new Parse.Query(Team);
-		//query.equalTo("Competition", $scope.competition);
+		var c = Parse.Object.extend("Competition");
+		var query = new Parse.Query(c);
+		var comp;
 		query.find({
+			success: function(results) {
+				$scope.$apply(function() {
+					comp = results[0];
+					console.log(comp);
+				});
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+		var t = new Parse.Relation(comp, "team");
+		q = t.query();
+		q.find({
 			success: function(results) {
 				$scope.$apply(function() {
 					console.log(results)
@@ -31,6 +44,8 @@ app.controller('MainController', ['$scope', function($scope) {
 				});
 			},
 			error: function(error) {
+				console.log(error);
+				return;
 			}
 		});
 	}
